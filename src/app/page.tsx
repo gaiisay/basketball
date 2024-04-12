@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import LigaTable from './LigaTable'
 
 export default async function Home() {

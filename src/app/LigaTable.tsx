@@ -1,22 +1,22 @@
 'use client'
 
-import { DataTable } from '@/components/data-table'
-import { columns } from './columns'
-import { useAtom, useAtomValue } from 'jotai'
-import { ligaListAtom, ligaListInputAtom } from '@/atoms'
-import { ligaListAction } from '@/lib/actions'
-import { Suspense, useEffect } from 'react'
+import { DataTable } from '@/src/components/data-table'
+import { ligaListAction } from '@/src/lib/actions'
+import { useEffect } from 'react'
+import { useLigaStore } from '../zustand/ligaStore'
 import TableSkeleton from './TableSkeleton'
+import { columns } from './columns'
 
 export default function LigaTable() {
-  const [ligaList, setLigaList] = useAtom(ligaListAtom)
-  const ligaListInput = useAtomValue(ligaListInputAtom)
+  const ligaList = useLigaStore((state) => state.ligaList)
+  const setLigaList = useLigaStore((state) => state.setLigaList)
+  const ligaListInput = useLigaStore((state) => state.ligaListInput)
 
   useEffect(() => {
     ligaListAction(ligaListInput).then((data) => {
       setLigaList(data)
     })
-  }, [])
+  }, [ligaListInput])
 
   // TODO: This is not the best solution. Handle it later
   if (!ligaList) return <TableSkeleton />

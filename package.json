@@ -30,7 +30,8 @@
     "skeleton": "^0.1.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -44,6 +45,7 @@
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8",
     "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.13",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

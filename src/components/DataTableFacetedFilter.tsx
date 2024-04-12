@@ -2,11 +2,11 @@
 
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
 
-import { cn } from '@/lib/utils'
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
-import { Button } from './ui/button'
-import { Separator } from './ui/separator'
+import { ligaListAction } from '@/src/lib/actions'
+import { cn } from '@/src/lib/utils'
+import { useLigaStore } from '../zustand/ligaStore'
 import { Badge } from './ui/badge'
+import { Button } from './ui/button'
 import {
   Command,
   CommandEmpty,
@@ -16,11 +16,8 @@ import {
   CommandList,
   CommandSeparator,
 } from './ui/command'
-import { useEffect, useState } from 'react'
-import { ligaListAction } from '@/lib/actions'
-import { useAtomValue } from 'jotai'
-import { ligaListInputAtom } from '@/atoms'
-import { useHydrateAtoms } from 'jotai/utils'
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
+import { Separator } from './ui/separator'
 
 interface DataTableFacetedFilterProps {
   title?: string
@@ -40,7 +37,7 @@ export function DataTableFacetedFilter({
   setSelectedValues,
   options,
 }: DataTableFacetedFilterProps) {
-  const ligaListInput = useAtomValue(ligaListInputAtom)
+  const ligaListInput = useLigaStore((state) => state.ligaListInput)
 
   return (
     <Popover>
@@ -107,12 +104,14 @@ export function DataTableFacetedFilter({
                             (value) => value.toString() !== option.value
                           ),
                         ])
+                        console.log(ligaListInput)
                         ligaListAction(ligaListInput)
                       } else {
                         setSelectedValues([
                           ...selectedValues,
                           parseInt(option.value),
                         ])
+                        console.log(ligaListInput)
                         ligaListAction(ligaListInput)
                       }
                     }}

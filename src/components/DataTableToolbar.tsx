@@ -1,23 +1,8 @@
 import { type Table } from '@tanstack/react-table'
 
+import { useLigaStore } from '../zustand/ligaStore'
 import { DataTableFacetedFilter } from './DataTableFacetedFilter'
 import { DataTableViewOptions } from './DataTableViewOptions'
-import { type LigaList } from '@/zod/ligaList'
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import {
-  getAltersklassenAtom,
-  getGebieteAtom,
-  getGeschlechterAtom,
-  getLigatypenAtom,
-  getSpielklassenAtom,
-  getVerbaendeAtom,
-  altersklassenInputAtom,
-  gebieteInputAtom,
-  geschlechterInputAtom,
-  ligatypenInputAtom,
-  spielklassenInputAtom,
-  verbaendeInputAtom,
-} from '@/atoms'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -26,24 +11,25 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
-  const verbaende = useAtomValue(getVerbaendeAtom)
-  const gebiete = useAtomValue(getGebieteAtom)
-  const ligatypen = useAtomValue(getLigatypenAtom)
-  const geschlechter = useAtomValue(getGeschlechterAtom)
-  const altersklassen = useAtomValue(getAltersklassenAtom)
-  const spielklassen = useAtomValue(getSpielklassenAtom)
+  const verbaende = useLigaStore((state) => state.getVerbaende())
+  const gebiete = useLigaStore((state) => state.getGebiete())
+  const ligatypen = useLigaStore((state) => state.getLigatypen())
+  const geschlechter = useLigaStore((state) => state.getGeschlechter())
+  const altersklassen = useLigaStore((state) => state.getAltersklassen())
+  const spielklassen = useLigaStore((state) => state.getSpielklassen())
 
-  const [verbaendeInput, setVerbaendeInput] = useAtom(verbaendeInputAtom)
-  const [gebieteInput, setGebieteInput] = useAtom(gebieteInputAtom)
-  const [ligatypenInput, setLigatypenInput] = useAtom(ligatypenInputAtom)
-  const [geschlechterInput, setGeschlechterInput] = useAtom(
-    geschlechterInputAtom
+  const ligaListInput = useLigaStore((state) => state.ligaListInput)
+  const setVerbaendeInput = useLigaStore((state) => state.setVerbaendeInput)
+  const setGebieteInput = useLigaStore((state) => state.setGebieteInput)
+  const setLigatypenInput = useLigaStore((state) => state.setLigatypenInput)
+  const setGeschlechterInput = useLigaStore(
+    (state) => state.setGeschlechterInput
   )
-  const [altersklassenInput, setAltersklassenInput] = useAtom(
-    altersklassenInputAtom
+  const setAltersklassenInput = useLigaStore(
+    (state) => state.setAltersklassenInput
   )
-  const [spielklassenInput, setSpielklassenInput] = useAtom(
-    spielklassenInputAtom
+  const setSpielklassenInput = useLigaStore(
+    (state) => state.setSpielklassenInput
   )
 
   return (
@@ -60,37 +46,37 @@ export function DataTableToolbar<TData>({
         <DataTableFacetedFilter
           title="Verband"
           options={verbaende}
-          selectedValues={verbaendeInput}
+          selectedValues={ligaListInput.verbandIds}
           setSelectedValues={setVerbaendeInput}
         />
         <DataTableFacetedFilter
           title="Gebiet"
           options={gebiete}
-          selectedValues={gebieteInput}
+          selectedValues={ligaListInput.gebietIds}
           setSelectedValues={setGebieteInput}
         />
         <DataTableFacetedFilter
           title="Ligatyp"
           options={ligatypen}
-          selectedValues={ligatypenInput}
+          selectedValues={ligaListInput.ligatypIds}
           setSelectedValues={setLigatypenInput}
         />
         <DataTableFacetedFilter
           title="Geschlecht"
           options={geschlechter}
-          selectedValues={geschlechterInput}
+          selectedValues={ligaListInput.akgGeschlechtIds}
           setSelectedValues={setGeschlechterInput}
         />
         <DataTableFacetedFilter
           title="Altersklasse"
           options={altersklassen}
-          selectedValues={altersklassenInput}
+          selectedValues={ligaListInput.altersklasseIds}
           setSelectedValues={setAltersklassenInput}
         />
         <DataTableFacetedFilter
           title="Spielklasse"
           options={spielklassen}
-          selectedValues={spielklassenInput}
+          selectedValues={ligaListInput.gebietIds}
           setSelectedValues={setSpielklassenInput}
         />
         {/* {isFiltered && (

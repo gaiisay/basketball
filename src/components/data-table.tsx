@@ -1,16 +1,17 @@
 'use client'
 
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
-  useReactTable,
-  type SortingState,
-  getSortedRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
+  useReactTable,
+  type ColumnDef,
+  type SortingState,
   type VisibilityState,
 } from '@tanstack/react-table'
 
+import { DataTableToolbar } from '@/src/components/DataTableToolbar'
 import {
   Table,
   TableBody,
@@ -18,9 +19,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from '@/src/components/ui/table'
 import { useState } from 'react'
-import { DataTableToolbar } from '@/components/DataTableToolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

@@ -1,7 +1,7 @@
 'use client'
 
-import { DataTableColumnHeader } from '@/src/components/DataTableColumnHeader'
-import { Liga } from '@/src/zod/liga'
+import { DataTableColumnHeader } from '@/components/DataTableColumnHeader'
+import { Liga } from '@/types/zod/liga'
 import { type ColumnDef } from '@tanstack/react-table'
 
 export const columns: ColumnDef<Liga>[] = [

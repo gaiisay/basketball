@@ -1,7 +1,7 @@
-import { DataTableColumnHeader } from '@/src/components/DataTableColumnHeader'
-import { DataTable } from '@/src/components/data-table'
-import { Skeleton } from '@/src/components/ui/skeleton'
-import { Liga } from '@/src/zod/liga'
+import { DataTableColumnHeader } from '@/components/DataTableColumnHeader'
+import { DataTable } from '@/components/data-table'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Liga } from '@/types/zod/liga'
 import { ColumnDef } from '@tanstack/react-table'
 
 export default function TableSkeleton() {

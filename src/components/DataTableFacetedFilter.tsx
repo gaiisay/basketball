@@ -2,9 +2,9 @@
 
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
 
-import { ligaListAction } from '@/src/lib/actions'
-import { cn } from '@/src/lib/utils'
-import { useLigaStore } from '../zustand/ligaStore'
+import { ligaListAction } from '@/lib/actions'
+import { cn } from '@/lib/utils'
+import { useLigaInputStore } from '@/zustand'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import {
@@ -37,7 +37,7 @@ export function DataTableFacetedFilter({
   setSelectedValues,
   options,
 }: DataTableFacetedFilterProps) {
-  const ligaListInput = useLigaStore((state) => state.ligaListInput)
+  const ligaListInput = useLigaInputStore((state) => state.ligaListInput)
 
   return (
     <Popover>

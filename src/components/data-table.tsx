@@ -11,7 +11,7 @@ import {
   type VisibilityState,
 } from '@tanstack/react-table'
 
-import { DataTableToolbar } from '@/src/components/DataTableToolbar'
+import { DataTableToolbar } from '@/components/DataTableToolbar'
 import {
   Table,
   TableBody,
@@ -19,7 +19,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/src/components/ui/table'
+} from '@/components/ui/table'
 import { useState } from 'react'
 
 interface DataTableProps<TData, TValue> {

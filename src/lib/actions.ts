@@ -1,6 +1,6 @@
 'use server'
 
-import { LigaListInput } from '@/src/zod/ligaList'
+import { LigaListInput } from '@/types/zod/ligaList'
 
 export const ligaListAction = async (input: LigaListInput) => {
   const res = await fetch(`https://www.basketball-bund.net/rest/wam/data`, {
@@ -9,6 +9,9 @@ export const ligaListAction = async (input: LigaListInput) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(input),
+    next: {
+      revalidate: 900,
+    },
   })
 
   if (!res.ok) {

@@ -1,6 +1,6 @@
 import { type Table } from '@tanstack/react-table'
 
-import { useLigaStore } from '../zustand/ligaStore'
+import { useLigaInputStore, useLigaStore } from '@/zustand'
 import { DataTableFacetedFilter } from './DataTableFacetedFilter'
 import { DataTableViewOptions } from './DataTableViewOptions'
 
@@ -18,17 +18,21 @@ export function DataTableToolbar<TData>({
   const altersklassen = useLigaStore((state) => state.getAltersklassen())
   const spielklassen = useLigaStore((state) => state.getSpielklassen())
 
-  const ligaListInput = useLigaStore((state) => state.ligaListInput)
-  const setVerbaendeInput = useLigaStore((state) => state.setVerbaendeInput)
-  const setGebieteInput = useLigaStore((state) => state.setGebieteInput)
-  const setLigatypenInput = useLigaStore((state) => state.setLigatypenInput)
-  const setGeschlechterInput = useLigaStore(
+  const ligaListInput = useLigaInputStore((state) => state.ligaListInput)
+  const setVerbaendeInput = useLigaInputStore(
+    (state) => state.setVerbaendeInput
+  )
+  const setGebieteInput = useLigaInputStore((state) => state.setGebieteInput)
+  const setLigatypenInput = useLigaInputStore(
+    (state) => state.setLigatypenInput
+  )
+  const setGeschlechterInput = useLigaInputStore(
     (state) => state.setGeschlechterInput
   )
-  const setAltersklassenInput = useLigaStore(
+  const setAltersklassenInput = useLigaInputStore(
     (state) => state.setAltersklassenInput
   )
-  const setSpielklassenInput = useLigaStore(
+  const setSpielklassenInput = useLigaInputStore(
     (state) => state.setSpielklassenInput
   )
 
